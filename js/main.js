@@ -32,7 +32,115 @@ document.addEventListener('DOMContentLoaded', () => {
     populateProjects();
     initializeFilters();
     initializeContactForm();
+    heroSectionAnimations();
 });
+
+// Hero Section Animations
+function heroSectionAnimations() {
+    const heroContent = document.querySelector('.hero-content');
+    const actionCards = document.querySelectorAll('.action-card');
+
+    // Animate hero content on load
+    gsap.from(heroContent.children, {
+        duration: 1,
+        y: 30,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "power2.out"
+    });
+
+    // Initialize hover effect for action cards
+    actionCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+                duration: 0.3,
+                scale: 1.05,
+                boxShadow: '0 10px 20px rgba(0,0,0,0.2)',
+                ease: "power2.out"
+            });
+
+            // Animate icon
+            const icon = card.querySelector('i');
+            gsap.to(icon, {
+                duration: 0.3,
+                scale: 1.2,
+                rotate: 360,
+                ease: "back.out(1.7)"
+            });
+
+            // Show link with animation
+            const link = card.querySelector('.action-link');
+            gsap.to(link, {
+                duration: 0.3,
+                opacity: 1,
+                y: 0,
+                ease: "power2.out"
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                duration: 0.3,
+                scale: 1,
+                boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+                ease: "power2.out"
+            });
+
+            // Reset icon
+            const icon = card.querySelector('i');
+            gsap.to(icon, {
+                duration: 0.3,
+                scale: 1,
+                rotate: 0,
+                ease: "power2.out"
+            });
+
+            // Hide link
+            const link = card.querySelector('.action-link');
+            gsap.to(link, {
+                duration: 0.3,
+                opacity: 0,
+                y: 20,
+                ease: "power2.in"
+            });
+        });
+    });
+
+    // Add parallax effect to cards on mouse move
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { left, top, width, height } = hero.getBoundingClientRect();
+        const x = (clientX - left) / width - 0.5;
+        const y = (clientY - top) / height - 0.5;
+
+        actionCards.forEach(card => {
+            const speed = card.getAttribute('data-speed') || 20;
+            gsap.to(card, {
+                duration: 0.6,
+                x: x * speed,
+                y: y * speed,
+                rotateX: -y * 10,
+                rotateY: x * 10,
+                ease: "power2.out"
+            });
+        });
+    });
+
+    // Reset cards position when mouse leaves hero section
+    hero.addEventListener('mouseleave', () => {
+        actionCards.forEach(card => {
+            gsap.to(card, {
+                duration: 0.6,
+                x: 0,
+                y: 0,
+                rotateX: 0,
+                rotateY: 0,
+                ease: "power2.out"
+            });
+        });
+    });
+}
 
 // Smooth Scrolling Navigation
 function initializeNavigation() {
@@ -223,3 +331,168 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// Action Cards Mobile Navigation
+const actionCards = document.querySelector('.action-cards');
+const prevButton = document.querySelector('.prev-card');
+const nextButton = document.querySelector('.next-card');
+
+if (actionCards && prevButton && nextButton) {
+    let autoScrollInterval;
+    const cardWidth = actionCards.querySelector('.action-card').offsetWidth;
+    let currentIndex = 0;
+    const totalCards = actionCards.children.length;
+
+    // Function to scroll to a specific card
+    const scrollToCard = (index) => {
+        currentIndex = index;
+        actionCards.scrollTo({
+            left: index * cardWidth,
+            behavior: 'smooth'
+        });
+    };
+
+    // Auto scroll function
+    const startAutoScroll = () => {
+        autoScrollInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalCards;
+            scrollToCard(currentIndex);
+        }, 3000); // Change card every 3 seconds
+    };
+
+    // Stop auto scroll on user interaction
+    const stopAutoScroll = () => {
+        clearInterval(autoScrollInterval);
+    };
+
+    // Navigation button click handlers
+    prevButton.addEventListener('click', () => {
+        stopAutoScroll();
+        currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+        scrollToCard(currentIndex);
+        setTimeout(startAutoScroll, 5000);
+    });
+
+    nextButton.addEventListener('click', () => {
+        stopAutoScroll();
+        currentIndex = (currentIndex + 1) % totalCards;
+        scrollToCard(currentIndex);
+        setTimeout(startAutoScroll, 5000);
+    });
+
+    // Touch events
+    let touchStartX = 0;
+    actionCards.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        stopAutoScroll();
+    });
+
+    actionCards.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > 50) { // Minimum swipe distance
+            if (diff > 0) {
+                currentIndex = Math.min(currentIndex + 1, totalCards - 1);
+            } else {
+                currentIndex = Math.max(currentIndex - 1, 0);
+            }
+            scrollToCard(currentIndex);
+        }
+        setTimeout(startAutoScroll, 5000);
+    });
+
+    // Start auto-scroll initially
+    startAutoScroll();
+}
+
+// Skills Section Mobile Navigation
+const skillsContainer = document.querySelector('.skills-container');
+const prevSkillButton = document.querySelector('.prev-skill');
+const nextSkillButton = document.querySelector('.next-skill');
+const progressDots = document.querySelectorAll('.progress-dot');
+
+if (skillsContainer && prevSkillButton && nextSkillButton) {
+    let skillsAutoScrollInterval;
+    const skillColumnWidth = skillsContainer.querySelector('.skills-column').offsetWidth;
+    let currentSkillIndex = 0;
+    const totalSkillColumns = skillsContainer.children.length;
+
+    // Function to update progress dots
+    const updateProgressDots = (index) => {
+        progressDots.forEach(dot => dot.classList.remove('active'));
+        progressDots[index].classList.add('active');
+    };
+
+    // Function to scroll to a specific skill column
+    const scrollToSkill = (index) => {
+        currentSkillIndex = index;
+        skillsContainer.scrollTo({
+            left: index * skillColumnWidth,
+            behavior: 'smooth'
+        });
+        updateProgressDots(index);
+    };
+
+    // Auto scroll function for skills
+    const startSkillsAutoScroll = () => {
+        skillsAutoScrollInterval = setInterval(() => {
+            currentSkillIndex = (currentSkillIndex + 1) % totalSkillColumns;
+            scrollToSkill(currentSkillIndex);
+        }, 4000); // Change skill category every 4 seconds
+    };
+
+    // Stop auto scroll on user interaction
+    const stopSkillsAutoScroll = () => {
+        clearInterval(skillsAutoScrollInterval);
+    };
+
+    // Navigation button click handlers
+    prevSkillButton.addEventListener('click', () => {
+        stopSkillsAutoScroll();
+        currentSkillIndex = (currentSkillIndex - 1 + totalSkillColumns) % totalSkillColumns;
+        scrollToSkill(currentSkillIndex);
+        setTimeout(startSkillsAutoScroll, 5000);
+    });
+
+    nextSkillButton.addEventListener('click', () => {
+        stopSkillsAutoScroll();
+        currentSkillIndex = (currentSkillIndex + 1) % totalSkillColumns;
+        scrollToSkill(currentSkillIndex);
+        setTimeout(startSkillsAutoScroll, 5000);
+    });
+
+    // Progress dots click handlers
+    progressDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            stopSkillsAutoScroll();
+            scrollToSkill(index);
+            setTimeout(startSkillsAutoScroll, 5000);
+        });
+    });
+
+    // Touch events for skills
+    let skillsTouchStartX = 0;
+    skillsContainer.addEventListener('touchstart', (e) => {
+        skillsTouchStartX = e.touches[0].clientX;
+        stopSkillsAutoScroll();
+    });
+
+    skillsContainer.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = skillsTouchStartX - touchEndX;
+
+        if (Math.abs(diff) > 50) { // Minimum swipe distance
+            if (diff > 0) {
+                currentSkillIndex = Math.min(currentSkillIndex + 1, totalSkillColumns - 1);
+            } else {
+                currentSkillIndex = Math.max(currentSkillIndex - 1, 0);
+            }
+            scrollToSkill(currentSkillIndex);
+        }
+        setTimeout(startSkillsAutoScroll, 5000);
+    });
+
+    // Start auto-scroll initially
+    startSkillsAutoScroll();
+}

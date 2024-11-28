@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jean Pierre Uwizeyimana - Biomedical Laboratory Scientist & AI Enthusiast. Explore my innovative projects combining healthcare and technology.">
+    <meta name="keywords" content="Biomedical Laboratory, AI, Machine Learning, Healthcare Technology, Web Development, Portfolio">
+    <meta name="author" content="Jean Pierre Uwizeyimana">
+    <meta property="og:title" content="JP Uwizeyimana - Biomedical Scientist & AI Developer">
+    <meta property="og:description" content="Explore my portfolio showcasing innovative projects at the intersection of healthcare and technology.">
+    <meta property="og:image" content="graphics/my-image-passport.png">
+    <meta property="og:url" content="https://ujpm.github.io">
+    <meta name="twitter:card" content="summary_large_image">
+    
     <title>Jean Pierre Uwizeyimana - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -10,6 +19,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    
+    <!-- Preload key assets -->
+    <link rel="preload" href="graphics/my-image-passport.png" as="image">
+    <link rel="preload" href="graphics/loading-Eclipse@1x-1.0s-200px-200px.svg" as="image">
+    
+    <!-- Custom scripts -->
+    <script defer src="js/particles.js"></script>
+    <script defer src="js/3d-cards.js"></script>
+    <script defer src="js/main.js"></script>
 </head>
 <body>
     <!-- Theme Switcher -->
@@ -57,55 +75,98 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <canvas id="heroCanvas"></canvas>
-        <div class="hero-content">
-            <div class="profile-image">
-                <img src="graphics/my-image-full-body-0.png" alt="Jean Pierre Uwizeyimana">
-                <div class="profile-overlay"></div>
+        <div id="particles-js" class="particle-container"></div>
+        <div class="hero-background">
+            <div class="overlay"></div>
+        </div>
+        
+        <div class="hero-wrapper">
+            <div class="hero-content">
+                <h1>Jean Pierre Uwizeyimana</h1>
+                <div class="title-container">
+                    <p class="title">Frontend Developer | Lab Scientist | UX/UI Designer</p>
+                </div>
+                <p class="hero-description">
+                    Crafting exceptional digital experiences through clean code and intuitive design.
+                    Specialized in building modern web applications and creating user-centered interfaces.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="primary-btn">View Projects</a>
+                    <a href="#contact" class="secondary-btn">Let's Connect</a>
+                </div>
             </div>
-            <h1 class="glitch-text">Jean Pierre Uwizeyimana</h1>
-            <p class="typewriter">Biomedical Laboratory Scientist | AI Enthusiast | Innovator</p>
-            <div class="hero-cta">
-                <a href="#contact" class="cta-button">Get In Touch</a>
-                <a href="#projects" class="cta-button secondary">View Projects</a>
-            </div>
-            <div class="quick-actions">
-                <div class="action-card">
-                    <i class="fas fa-microscope"></i>
-                    <h3>Laboratory Excellence</h3>
-                    <p>Expert in biomedical laboratory techniques and quality control procedures</p>
-                    <a href="#skills" class="action-link">Explore Skills <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="action-card">
-                    <i class="fas fa-brain"></i>
-                    <h3>AI Solutions</h3>
-                    <p>Developing innovative AI applications for healthcare and diagnostics</p>
-                    <a href="#projects" class="action-link">View AI Projects <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="action-card">
-                    <i class="fas fa-code"></i>
-                    <h3>Web Development</h3>
-                    <p>Creating modern, responsive web applications with cutting-edge technologies</p>
-                    <a href="#projects" class="action-link">See Web Projects <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="action-card">
-                    <i class="fas fa-chart-network"></i>
-                    <h3>Research & Innovation</h3>
-                    <p>Bridging healthcare and technology through innovative research</p>
-                    <a href="#blog" class="action-link">Read Insights <i class="fas fa-arrow-right"></i></a>
+                
+            <div class="hero-image">
+                <img src="graphics/my-image.png" alt="JP" class="profile-img">
+                <div class="experience-badge">
+                    <span class="years">4+</span>
+                    <span class="text">Years<br>Experience</span>
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
+
+        <div class="expertise-grid">
+            <div class="expertise-card" data-aos="fade-up">
+                <span class="card-number">01</span>
+                <div class="card-content">
+                    <h3>Frontend Development</h3>
+                    <p>Building scalable web applications with modern frameworks and best practices</p>
+                    <div class="tech-stack">
+                        <span>React</span>
+                        <span>Vue.js</span>
+                        <span>Next.js</span>
+                    </div>
+                </div>
             </div>
-            <div class="arrow"></div>
+
+            <div class="expertise-card" data-aos="fade-up" data-aos-delay="100">
+                <span class="card-number">02</span>
+                <div class="card-content">
+                    <h3>UI/UX Design</h3>
+                    <p>Creating intuitive interfaces and seamless user experiences that engage and delight</p>
+                    <div class="tech-stack">
+                        <span>Figma</span>
+                        <span>Adobe XD</span>
+                        <span>Prototyping</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expertise-card" data-aos="fade-up" data-aos-delay="200">
+                <span class="card-number">03</span>
+                <div class="card-content">
+                    <h3>Creative Design</h3>
+                    <p>Delivering stunning visual solutions that strengthen brand identity</p>
+                    <div class="tech-stack">
+                        <span>Photoshop</span>
+                        <span>Illustrator</span>
+                        <span>After Effects</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expertise-card" data-aos="fade-up" data-aos-delay="300">
+                <span class="card-number">04</span>
+                <div class="card-content">
+                    <h3>Web Animation</h3>
+                    <p>Implementing smooth, engaging animations that enhance user interaction</p>
+                    <div class="tech-stack">
+                        <span>GSAP</span>
+                        <span>Framer Motion</span>
+                        <span>CSS/SVG</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="about" style="padding-top: 4rem;">
         <div class="about-content">
             <div class="about-text">
                 <h2>About Me</h2>
@@ -170,159 +231,284 @@
             <h2>My Expertise</h2>
             <p>A unique blend of technical, healthcare, and AI capabilities</p>
         </div>
-        <div class="skills-container">
-            <div class="skills-column">
-                <div class="skills-category">
+        <div class="skills-wrapper">
+            <div class="skills-container">
+                <div class="skills-column" data-index="0">
                     <h3>Technical</h3>
-                    <div class="skill-item">
-                        <i class="fab fa-js"></i>
-                        <div class="skill-info">
-                            <h4>JavaScript</h4>
-                            <div class="skill-progress">
-                                <div class="progress-bar" style="width: 90%"></div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <i class="fab fa-js"></i>
+                            <div class="skill-info">
+                                <h4>JavaScript</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" style="width: 90%"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fab fa-python"></i>
-                        <div class="skill-info">
-                            <h4>Python</h4>
-                            <div class="skill-progress">
-                                <div class="progress-bar" style="width: 85%"></div>
+                        <div class="skill-item">
+                            <i class="fab fa-python"></i>
+                            <div class="skill-info">
+                                <h4>Python</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" style="width: 85%"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fab fa-react"></i>
-                        <div class="skill-info">
-                            <h4>React</h4>
-                            <div class="skill-progress">
-                                <div class="progress-bar" style="width: 80%"></div>
+                        <div class="skill-item">
+                            <i class="fab fa-react"></i>
+                            <div class="skill-info">
+                                <h4>React</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" style="width: 80%"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fab fa-node-js"></i>
-                        <div class="skill-info">
-                            <h4>Node.js</h4>
-                            <div class="skill-progress">
-                                <div class="progress-bar" style="width: 75%"></div>
+                        <div class="skill-item">
+                            <i class="fab fa-node-js"></i>
+                            <div class="skill-info">
+                                <h4>Node.js</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" style="width: 75%"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fas fa-cube"></i>
-                        <div class="skill-info">
-                            <h4>Three.js</h4>
-                            <div class="skill-progress">
-                                <div class="progress-bar" style="width: 70%"></div>
+                        <div class="skill-item">
+                            <i class="fas fa-cube"></i>
+                            <div class="skill-info">
+                                <h4>Three.js</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" style="width: 70%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="skills-column">
-                <div class="skills-category">
+                <div class="skills-column" data-index="1">
                     <h3>Healthcare</h3>
-                    <div class="skill-item">
-                        <i class="fas fa-flask"></i>
-                        <div class="skill-info">
-                            <h4>Laboratory Techniques</h4>
-                            <div class="skill-progress">
-                                <div class="progress-bar" style="width: 95%"></div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <i class="fas fa-flask"></i>
+                            <div class="skill-info">
+                                <h4>Laboratory Techniques</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-microscope"></i>
+                            <div class="skill-info">
+                                <h4>Medical Research</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-chart-bar"></i>
+                            <div class="skill-info">
+                                <h4>Data Analysis</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div class="skill-info">
+                                <h4>Quality Control</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" style="width: 90%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="skill-item">
-                        <i class="fas fa-microscope"></i>
-                        <div class="skill-info">
-                            <h4>Medical Research</h4>
-                            <div class="skill-progress">
-                                <div class="progress-bar" style="width: 90%"></div>
+                </div>
+                <div class="skills-column" data-index="2">
+                    <h3>AI & ML</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <i class="fas fa-brain"></i>
+                            <div class="skill-info">
+                                <h4>Machine Learning</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" style="width: 80%"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fas fa-chart-bar"></i>
-                        <div class="skill-info">
-                            <h4>Data Analysis</h4>
-                            <div class="skill-progress">
-                                <div class="progress-bar" style="width: 85%"></div>
+                        <div class="skill-item">
+                            <i class="fas fa-eye"></i>
+                            <div class="skill-info">
+                                <h4>Computer Vision</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" style="width: 75%"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fas fa-check-circle"></i>
-                        <div class="skill-info">
-                            <h4>Quality Control</h4>
-                            <div class="skill-progress">
-                                <div class="progress-bar" style="width: 90%"></div>
+                        <div class="skill-item">
+                            <i class="fas fa-comments"></i>
+                            <div class="skill-info">
+                                <h4>NLP</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-database"></i>
+                            <div class="skill-info">
+                                <h4>Data Science</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" style="width: 85%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="skills-column">
-                <div class="skills-category">
-                    <h3>AI & ML</h3>
-                    <div class="skill-item">
-                        <i class="fas fa-brain"></i>
-                        <div class="skill-info">
-                            <h4>Machine Learning</h4>
-                            <div class="skill-progress">
-                                <div class="progress-bar" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fas fa-eye"></i>
-                        <div class="skill-info">
-                            <h4>Computer Vision</h4>
-                            <div class="skill-progress">
-                                <div class="progress-bar" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fas fa-comments"></i>
-                        <div class="skill-info">
-                            <h4>NLP</h4>
-                            <div class="skill-progress">
-                                <div class="progress-bar" style="width: 70%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <i class="fas fa-database"></i>
-                        <div class="skill-info">
-                            <h4>Data Science</h4>
-                            <div class="skill-progress">
-                                <div class="progress-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="skills-nav-buttons">
+                <button class="skills-nav-button prev-skill" aria-label="Previous skill category">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="skills-nav-button next-skill" aria-label="Next skill category">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="skills-progress">
+                <span class="progress-dot active" data-index="0"></span>
+                <span class="progress-dot" data-index="1"></span>
+                <span class="progress-dot" data-index="2"></span>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="projects">
-        <div class="section-background">
-            <video autoplay muted loop class="section-video">
-                <source src="graphics/Abstract, Particles, Tunnel  Stock Video.mp4" type="video/mp4">
-            </video>
+        <div class="section-header">
+            <h2>Featured Projects</h2>
+            <p class="section-subtitle">Where Healthcare Meets Technology</p>
         </div>
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="healthcare">Healthcare</button>
-                <button class="filter-btn" data-filter="ai">AI</button>
-                <button class="filter-btn" data-filter="web">Web</button>
+
+        <div class="projects-grid">
+            <!-- MediMate Project -->
+            <div class="project-card" data-aos="fade-up">
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3>MediMate</h3>
+                        <div class="project-tags">
+                            <span>Healthcare</span>
+                            <span>AI</span>
+                            <span>React</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        An intelligent health companion that revolutionizes personal healthcare management. 
+                        Leveraging advanced AI algorithms to provide accurate symptom analysis, personalized 
+                        health tracking, and comprehensive wellness monitoring.
+                    </p>
+                    <div class="project-features">
+                        <div class="feature">
+                            <i class="fas fa-brain"></i>
+                            <span>AI Symptom Checker</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Disease Tracking</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-heart"></i>
+                            <span>Mental Wellness</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-running"></i>
+                            <span>Fitness Monitoring</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="project-link">GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="projects-grid">
-                <!-- Project cards will be added here -->
+
+            <!-- MicroSmart Project -->
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3>MicroSmart</h3>
+                        <div class="project-tags">
+                            <span>Laboratory</span>
+                            <span>AI Analysis</span>
+                            <span>React</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        A groundbreaking AI-powered microscopy assistant that enhances laboratory diagnostics. 
+                        Provides real-time analysis of microscopic images, supporting medical laboratory 
+                        scientists in making faster, more accurate decisions.
+                    </p>
+                    <div class="project-features">
+                        <div class="feature">
+                            <i class="fas fa-microscope"></i>
+                            <span>Real-time Analysis</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-robot"></i>
+                            <span>AI Detection</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-database"></i>
+                            <span>Result Tracking</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Analytics Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="project-link">GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Project Ideas -->
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3>LabFlow</h3>
+                        <div class="project-tags">
+                            <span>Management</span>
+                            <span>Dashboard</span>
+                            <span>React</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        A modern laboratory management system designed to streamline workflows and enhance 
+                        efficiency. Features include specimen tracking, result management, and automated reporting.
+                    </p>
+                    <div class="project-features">
+                        <div class="feature">
+                            <i class="fas fa-tasks"></i>
+                            <span>Workflow Management</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-vial"></i>
+                            <span>Sample Tracking</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-file-medical-alt"></i>
+                            <span>Auto Reporting</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-analytics"></i>
+                            <span>Lab Analytics</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Coming Soon <i class="fas fa-clock"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

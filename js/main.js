@@ -67,10 +67,30 @@ function initializeNavigation() {
         });
     });
 
-    // Mobile menu toggle
-    navToggle.addEventListener('click', () => {
-        navContainer.style.display = 
-            navContainer.style.display === 'flex' ? 'none' : 'flex';
+    // Mobile Navigation Toggle
+    const navLinksContainer = document.querySelector('.nav-links');
+
+    if (navToggle) {
+        navToggle.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navToggle.contains(e.target) && !navLinksContainer.contains(e.target)) {
+            navLinksContainer.classList.remove('active');
+            navToggle.classList.remove('active');
+        }
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinksContainer.classList.remove('active');
+            navToggle.classList.remove('active');
+        });
     });
 
     // Update active link on scroll
